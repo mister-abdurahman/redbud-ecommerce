@@ -2,7 +2,7 @@
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { CURRENCY } from "@/lib/constants";
-import { useState } from "react";
+import { FormEventHandler, useState } from "react";
 
 interface ILocation {
   state: string;
@@ -17,7 +17,7 @@ export function RadioGroupDemo({
 }) {
   const [s, setS] = useState("Our Pickup store");
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: any) => {
     // console.log(value);
     setS(event.target.value);
   };

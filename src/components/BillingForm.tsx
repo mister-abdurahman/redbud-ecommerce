@@ -1,10 +1,7 @@
 "use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
-// import { toast } from "@/components/hooks/use-toast"
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -20,7 +17,6 @@ import OrderDetails from "@/ui/Order/OrderDetails";
 import { useContext } from "react";
 import { MyContext } from "@/store/store";
 import { handlePayment } from "@/app/api/payment/paystackInteface";
-import { useSearchParams } from "next/navigation";
 
 const FormSchema = z.object({
   firstName: z
@@ -74,14 +70,13 @@ export function BillingForm() {
     formState: { errors },
   } = form;
 
-  async function onSubmit(data: z.infer<typeof FormSchema>) {
+  function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(data);
-    handlePayment(data.email, totalToPay);
+    // handlePayment(data.email, totalToPay);
   }
 
   return (
     <>
-      <script src="https://js.paystack.co/v2/inline.js"></script>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

@@ -15,7 +15,7 @@ interface PageProps {
   };
 }
 
-async function page({ params }: PageProps) {
+async function page({ params }: any) {
   const product = await getProductById(params.id);
   const brand = await getBrandById(product.brand_id);
 

@@ -3,14 +3,8 @@ import React, { useContext, useState } from "react";
 import img from "@/assets/images/garlic.png";
 import { Button } from "@/components/ui/button";
 import CartTable from "@/ui/Cart/CartTable";
-import { Input } from "@/components/ui/input";
-import { SelectInput } from "@/components/SelectInput";
-import { RadioGroupDemo } from "@/components/RadioGroupItem";
-import { useRouter } from "next/navigation";
-import { MyContext } from "@/store/store";
 import CartList from "@/ui/Cart/CartList";
 import ProductCalculation from "@/ui/Cart/ProductCalculation";
-import { fetchCountries, getCountries } from "@/services/apiThirdParties";
 import PageContainer from "@/components/PageContainer";
 
 async function page() {
