@@ -15,6 +15,7 @@ import { z } from "zod";
 import SignUpForm from "./SignupForm";
 import LoginForm from "./LogInForm";
 import { AuthContext } from "@/store/authStore";
+import { BiLogInCircle } from "react-icons/bi";
 
 export function AuthDialog() {
   const [isNewUser, setIsNewUser] = useState(false);
@@ -22,7 +23,10 @@ export function AuthDialog() {
   return (
     <Dialog open={isAuthModalOpen} onOpenChange={setIsAuthModalOpen}>
       <DialogTrigger asChild>
-        <Button className="hidden sm:block">Login</Button>
+        <Button>
+          <p className="hidden sm:block">Login</p>
+          <BiLogInCircle className="block sm:hidden" />
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
