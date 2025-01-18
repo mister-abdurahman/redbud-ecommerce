@@ -1,6 +1,15 @@
 "use client";
+// import { ICart } from "@/lib/types";
+import { QueryClient } from "@tanstack/react-query";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "./authStore";
+import {
+  addProductToUserCart,
+  getCartByUserId,
+  removeProductFromUserCart,
+} from "@/services/apiCart";
+import { getProductById } from "@/services/apiProducts";
 import { ICart } from "@/lib/types";
-import React, { useEffect, useState } from "react";
 
 interface IAddress {
   address: string;
@@ -33,7 +42,10 @@ const defaultValue: IProps = {
 
 export const MyContext = React.createContext(defaultValue);
 
+// export const queryClient = new QueryClient();
+
 export const MyContextProvider = function ({ children }) {
+  const { user } = useContext(AuthContext);
   const [cart, setCart] = useState(() => {
     if (typeof window !== "undefined") {
       const savedCart = localStorage.getItem("cart");
@@ -64,8 +76,6 @@ export const MyContextProvider = function ({ children }) {
   useEffect(() => {
     if (cart.length > 0) {
       localStorage.setItem("cart", JSON.stringify(cart));
-    } else if (!cart.length) {
-      localStorage.setItem("cart", JSON.stringify([]));
     }
     if (shippingAddress) {
       localStorage.setItem("shippingAddress", JSON.stringify(shippingAddress));
@@ -74,6 +84,35 @@ export const MyContextProvider = function ({ children }) {
       localStorage.setItem("totalToPay", JSON.stringify(totalToPay));
     }
   }, [cart, shippingAddress, totalToPay]);
+
+  useEffect(
+    function () {
+      async function FetchCart() {
+        const userCart = await getCartByUserId(user?.user?.id);
+        // localStorage.setItem("cart", JSON.stringify(userCart));
+        const modifiedCart = await Promise.all(
+          userCart.map(async (el) => {
+            const product = await getProductById(el.product_id);
+            return {
+              id: el.id,
+              img_url: product.img_url,
+              name: product.name,
+              price: product.price,
+              quantity: el.quantity,
+              product_id: el.product_id,
+            };
+          })
+        );
+        console.log("what da heck?!", modifiedCart);
+        setCart(modifiedCart);
+        localStorage.setItem("cart", JSON.stringify(modifiedCart));
+      }
+
+      if (!user) return;
+      else FetchCart();
+    },
+    [user, setCart]
+  );
 
   function adjustQuantityOfAProduct(itemId: string, isIncrease: boolean) {
     setCart((el) => {
@@ -92,17 +131,13 @@ export const MyContextProvider = function ({ children }) {
   }
 
   function removeItemFromCart(itemId: number) {
-    setCart((prev) => {
-      console.log("ran in remove item from cart fn");
-      if (!prev.find((item) => item.id === itemId)) return prev;
-      console.log("ran before filter logic");
-      return prev.filter((e) => e.id !== itemId);
-    });
-    // setCart([]);
+    setCart((el) => el.filter((e) => e.id !== itemId));
+    user && removeProductFromUserCart(itemId);
   }
 
   function addItemToCart(newItem: ICart) {
     setCart((el) => [...el, newItem]);
+    user && addProductToUserCart({ ...newItem, user_id: user.user.id });
   }
 
   return (

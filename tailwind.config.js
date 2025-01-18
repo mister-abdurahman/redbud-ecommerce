@@ -61,7 +61,7 @@ module.exports = {
       },
       backgroundImage: {
         heroImage:
-          'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/images/figmadoc.png")',
+          'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/images/hero_02.png")',
       },
       borderRadius: {
         lg: "`var(--radius)`",

@@ -1,4 +1,3 @@
-"use server";
 import PaystackPop from "@paystack/inline-js";
 
 export const handlePayment = (email, amount) => {

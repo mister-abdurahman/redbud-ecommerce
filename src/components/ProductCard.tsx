@@ -11,14 +11,14 @@ import { toast } from "@/hooks/use-toast";
 import { ToastAction } from "./ui/toast";
 
 interface IProps {
-  imageUrl: string;
+  img_url: string;
   name: string;
   price: number;
   id: number;
   status: boolean;
 }
 
-function ProductCard({ imageUrl, name, price, id, status }: IProps) {
+function ProductCard({ img_url, name, price, id, status }: IProps) {
   const navigate = useRouter();
   const { addItemToCart, cart } = useContext(MyContext);
 
@@ -42,7 +42,7 @@ function ProductCard({ imageUrl, name, price, id, status }: IProps) {
       name,
       price,
       quantity: 1,
-      img_url: imageUrl,
+      img_url,
       id,
     });
     // alert("Item added to cart");
@@ -68,7 +68,7 @@ function ProductCard({ imageUrl, name, price, id, status }: IProps) {
       )}
       <Image
         alt="product image"
-        src={imageUrl}
+        src={img_url}
         objectFit="cover"
         objectPosition="center"
         width={200}

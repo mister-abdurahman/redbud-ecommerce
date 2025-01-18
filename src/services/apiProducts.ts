@@ -17,7 +17,7 @@ export async function getProducts(): Promise<IProduct[]> {
     return error;
   }
 }
-export async function getProductById(id: string): Promise<IProduct> {
+export async function getProductById(id: number): Promise<IProduct> {
   try {
     const { data, error }: { data: unknown; error: any } = await supabase
       .from("products")

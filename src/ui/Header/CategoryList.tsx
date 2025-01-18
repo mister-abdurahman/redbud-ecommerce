@@ -4,7 +4,7 @@ import React from "react";
 
 function CategoryList({ list }: { list: ICategory[] }) {
   return (
-    <ul className="hidden sm:flex justify-center gap-5 text-sm px-4">
+    <ul className="hidden sm:flex justify-center gap-5 text-sm px- mb-2">
       {list.map((el, i) => (
         <Link href={`/products?search=${el.name}`} key={i}>
           <li className="bg-secondary dark:bg-blue-100 dark:text-secondary text-white rounded-full px-2">

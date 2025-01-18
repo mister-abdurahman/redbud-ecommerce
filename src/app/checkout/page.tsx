@@ -1,12 +1,19 @@
 import { BillingForm } from "@/components/BillingForm";
-import React from "react";
+import React, { Suspense } from "react";
 import PageContainer from "@/components/PageContainer";
+import { getProfileById } from "@/services/apiProfile";
+import Spinner from "@/components/Spinner";
 
-function page() {
+async function page({ searchParams }) {
+  const resolvedQuery = await searchParams;
+  const queryVal = resolvedQuery["id"];
+
+  const userProfile = await getProfileById(queryVal);
   return (
     <PageContainer pageTitle="CHECKOUT">
-      <h1>Checkout Page</h1>
-      {/* <BillingForm /> */}
+      <Suspense fallback={<Spinner />}>
+        <BillingForm user_profile={userProfile} />
+      </Suspense>
     </PageContainer>
   );
 }

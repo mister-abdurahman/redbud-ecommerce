@@ -1,4 +1,5 @@
 "use client";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -6,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -17,9 +17,10 @@ import OrderDetails from "@/ui/Order/OrderDetails";
 import { useContext } from "react";
 import { MyContext } from "@/store/store";
 import { handlePayment } from "@/app/api/payment/paystackInteface";
+import { IProfile } from "@/lib/types";
 
 const FormSchema = z.object({
-  firstName: z
+  first_name: z
     .string()
     .min(2, {
       message: "first name must be at least 2 characters.",
@@ -27,42 +28,38 @@ const FormSchema = z.object({
     .max(50, {
       message: "first name must be at less than 50 characters.",
     }),
-  lastName: z
+  last_name: z
     .string()
     .min(2, {
       message: "last name must be at least 2 characters.",
     })
     .max(50),
-  companyName: z.string().optional(),
   country: z.string().min(2).max(50),
-  streetAddress: z.string().min(2).max(50),
+  street_address: z.string().min(2).max(50),
   city: z.string().min(2).max(50),
   state: z.string().min(2).max(50),
-  phoneNumber: z
+  phone_number: z
     .string()
     .min(2)
     .max(20)
     .refine((val) => !isNaN(Number(val)), { message: "Must be a valid number" })
     .transform((val) => Number(val)),
   email: z.string().min(2).max(50).email(),
-  otherNotes: z.string().optional(),
 });
 
-export function BillingForm() {
+export function BillingForm({ user_profile }: { user_profile?: IProfile }) {
   const { cart, totalToPay } = useContext(MyContext);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      companyName: "",
+    defaultValues: user_profile ?? {
+      first_name: "",
+      last_name: "",
       country: "",
-      streetAddress: "",
+      street_address: "",
       city: "",
       state: "",
-      phoneNumber: 0,
+      phone_number: 0,
       email: "",
-      otherNotes: "",
     },
   });
 
@@ -70,13 +67,14 @@ export function BillingForm() {
     formState: { errors },
   } = form;
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(data);
-    // handlePayment(data.email, totalToPay);
+    handlePayment(data.email, totalToPay);
   }
 
   return (
     <>
+      {/* <script src="https://js.paystack.co/v2/inline.js"></script> */}
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -86,45 +84,30 @@ export function BillingForm() {
             <h1 className="mb-3 text-xl font-semibold">Billing details</h1>
             <FormField
               control={form.control}
-              name="firstName"
+              name="first_name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>First Name</FormLabel>
                   <FormControl>
                     <Input placeholder="First Name" {...field} />
                   </FormControl>
-                  {errors.firstName && (
-                    <FormMessage>{errors.firstName.message}</FormMessage>
+                  {errors.first_name && (
+                    <FormMessage>{errors.first_name.message}</FormMessage>
                   )}
                 </FormItem>
               )}
             />
             <FormField
               control={form.control}
-              name="lastName"
+              name="last_name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Last Name</FormLabel>
                   <FormControl>
                     <Input placeholder="Last Name" {...field} />
                   </FormControl>
-                  {errors.lastName && (
-                    <FormMessage>{errors.lastName.message}</FormMessage>
-                  )}
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="companyName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Company Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Company Name" {...field} />
-                  </FormControl>
-                  {errors.companyName && (
-                    <FormMessage>{errors.companyName.message}</FormMessage>
+                  {errors.last_name && (
+                    <FormMessage>{errors.last_name.message}</FormMessage>
                   )}
                 </FormItem>
               )}
@@ -146,15 +129,15 @@ export function BillingForm() {
             />
             <FormField
               control={form.control}
-              name="streetAddress"
+              name="street_address"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Street Address</FormLabel>
                   <FormControl>
                     <Input placeholder="Street Address" {...field} />
                   </FormControl>
-                  {errors.streetAddress && (
-                    <FormMessage>{errors.streetAddress.message}</FormMessage>
+                  {errors.street_address && (
+                    <FormMessage>{errors.street_address.message}</FormMessage>
                   )}
                 </FormItem>
               )}
@@ -191,7 +174,7 @@ export function BillingForm() {
             />
             <FormField
               control={form.control}
-              name="phoneNumber"
+              name="phone_number"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Phone Number</FormLabel>
@@ -203,8 +186,8 @@ export function BillingForm() {
                       {...field}
                     />
                   </FormControl>
-                  {errors.phoneNumber && (
-                    <FormMessage>{errors.phoneNumber.message}</FormMessage>
+                  {errors.phone_number && (
+                    <FormMessage>{errors.phone_number.message}</FormMessage>
                   )}
                 </FormItem>
               )}
@@ -220,21 +203,6 @@ export function BillingForm() {
                   </FormControl>
                   {errors.email && (
                     <FormMessage>{errors.email.message}</FormMessage>
-                  )}
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="otherNotes"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Other Notes</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Other Notes" {...field} />
-                  </FormControl>
-                  {errors.otherNotes && (
-                    <FormMessage>{errors.otherNotes.message}</FormMessage>
                   )}
                 </FormItem>
               )}

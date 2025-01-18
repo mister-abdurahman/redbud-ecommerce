@@ -16,18 +16,14 @@ function SmallSearchBox() {
   }
 
   return (
-    <div className="sm:hidden flex basis-full bg-slate-100 rounded-md border border-gray-300 relative">
+    <div className="sm:hidden flex basis-full relative">
       <Input
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
-        className="w-full sm:text-base text-xs"
+        className="w-full sm:text-base text-xs rounded-full border border-secondary"
         placeholder="Search product name, category, brand..."
       />
-      <Button
-        onClick={handleSearch}
-        variant="default"
-        className="bg-green-600 absolute right-0"
-      >
+      <Button onClick={handleSearch} className="bg-secondary absolute right-0">
         <IoSearchOutline />
       </Button>
     </div>

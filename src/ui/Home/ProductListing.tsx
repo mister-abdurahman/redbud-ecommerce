@@ -13,7 +13,7 @@ async function ProductListing({ products }: { products: IProduct[] }) {
         <ProductCard
           key={i}
           id={el.id}
-          imageUrl={el.img_url}
+          img_url={el.img_url}
           price={el.price}
           name={el.name}
           status={el.status}
