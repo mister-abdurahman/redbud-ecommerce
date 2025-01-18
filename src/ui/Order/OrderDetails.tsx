@@ -25,7 +25,7 @@ function OrderDetails({ children }: { children: ReactNode }) {
   );
 
   return (
-    <div className="basis-2/5">
+    <div className="basis-full sm:basis-2/5">
       <h1 className="mb-3 text-xl font-semibold">Your order</h1>
 
       <div className="bg-blue-50 p-6 border-2 border-secondary rounded-md">

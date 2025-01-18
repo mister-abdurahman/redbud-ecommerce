@@ -7,7 +7,7 @@ import React from "react";
 
 async function ProductListing({ products }: { products: IProduct[] }) {
   return (
-    <div className="flex flex-col sm:flex-row items-center sm:gap-10 py-3 flex-wrap">
+    <div className="flex flex-col sm:flex-row items-center gap-10 py-3 flex-wrap">
       <VerifyPaymentUI />
       {products.map((el, i) => (
         <ProductCard

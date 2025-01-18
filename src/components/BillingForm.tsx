@@ -78,9 +78,9 @@ export function BillingForm({ user_profile }: { user_profile?: IProfile }) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex gap-6 py-4"
+          className="flex gap-6 py-4 sm:flex-row flex-col"
         >
-          <div className="space-y-2 basis-3/5">
+          <div className="space-y-2 basis-full sm:basis-3/5">
             <h1 className="mb-3 text-xl font-semibold">Billing details</h1>
             <FormField
               control={form.control}

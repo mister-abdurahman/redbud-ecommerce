@@ -33,7 +33,7 @@ async function ProductHighlight({
           <Link href={"/products"}>View All &rarr;</Link>
         </p>
       </div>
-      <div className="flex flex-col sm:flex-row gap-8 sm:gap-6 flex-wrap items-center">
+      <div className="flex flex-col sm:flex-row gap-12 sm:gap-6 flex-wrap items-center">
         {products.map((el, i) => (
           <ProductCard
             key={i}
