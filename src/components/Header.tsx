@@ -36,7 +36,9 @@ async function Header() {
     <header className="px-3 sm:px-8 dark:bg-slate-700">
       <div className="flex items-center justify-between py-2">
         <figure>
-          <Image src={LOGO} alt="logo image" className="w-40 h-16" />
+          <Link href={"/"}>
+            <Image src={LOGO} alt="logo image" className="w-40 h-16" />
+          </Link>
         </figure>
         <SearchBox />
         <div className="flex gap-5 items-center">
