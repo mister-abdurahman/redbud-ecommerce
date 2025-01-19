@@ -11,6 +11,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { getCategorys } from "@/services/apiProducts";
+import SignoutButton from "@/ui/Profile/SignoutButton";
 import { Item } from "@radix-ui/react-select";
 import Link from "next/link";
 
@@ -35,6 +36,7 @@ export async function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+              <SignoutButton />
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

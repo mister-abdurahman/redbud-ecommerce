@@ -58,7 +58,7 @@ function ProfileSideNavigation({ children }: { children: ReactNode }) {
             </a>
           </li>
         ))}
-        {children}
+        <div className="hidden sm:block">{children}</div>
       </ul>
     </nav>
   );
