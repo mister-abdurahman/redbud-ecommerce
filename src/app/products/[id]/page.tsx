@@ -15,6 +15,18 @@ interface PageProps {
   };
 }
 
+export async function generateMetadata({ params }) {
+  const Product = await getProductById(+params.id);
+  if (!Product?.name)
+    return {
+      title: "Redbud Gadgets Store",
+    };
+
+  return {
+    title: `${Product.name}`,
+  };
+}
+
 async function page({ params }: any) {
   const product = await getProductById(params.id);
   const brand = await getBrandById(product.brand_id);

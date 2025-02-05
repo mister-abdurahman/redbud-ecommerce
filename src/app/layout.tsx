@@ -17,17 +17,26 @@ const nunito = Nunito({
   display: "swap",
 });
 
+export const metadata = {
+  title: {
+    template: "%s | Redbud Gadgets Store",
+    default: "Welcome | Redbud Gadgets Store",
+  },
+  description: "Your Top choice for quality and sleek gadgets",
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={nunito.className}>
-      <AuthProvider>
-        <MyContextProvider>
-          <ThemeContextProvider>
-            <ThemedBody>
+    <html lang="en">
+      <body className={nunito.className}>
+        <AuthProvider>
+          <MyContextProvider>
+            <ThemeContextProvider>
+              {/* <ThemedBody> */}
               <SidebarProvider className="h-screen flex flex-col">
                 <Header />
                 <main className="dark:bg-blue-500 dark:text-black">
@@ -39,10 +48,11 @@ export default function RootLayout({
                 <Footer />
               </SidebarProvider>
               <Toaster />
-            </ThemedBody>
-          </ThemeContextProvider>
-        </MyContextProvider>
-      </AuthProvider>
+              {/* </ThemedBody> */}
+            </ThemeContextProvider>
+          </MyContextProvider>
+        </AuthProvider>
+      </body>
     </html>
   );
 }

@@ -10,6 +10,7 @@ import { MyContext } from "@/store/store";
 import { toast } from "@/hooks/use-toast";
 import { ToastAction } from "./ui/toast";
 import Link from "next/link";
+import AdjustQuantity from "./AdjustQuantity";
 
 interface IProps {
   img_url: string;
@@ -21,11 +22,13 @@ interface IProps {
 
 function ProductCard({ img_url, name, price, id, status }: IProps) {
   const navigate = useRouter();
-  const { addItemToCart, cart } = useContext(MyContext);
+  const { addItemToCart, cart, adjustQuantityOfAProduct } =
+    useContext(MyContext);
+
+  const itemInCart = cart.find((a) => a.id === id);
 
   function handleAddToCart() {
-    const as = cart.find((a) => a.id === id);
-    if (as)
+    if (itemInCart)
       return toast({
         title: "Item already in cart",
         description: "Want to go checkout ?",
@@ -89,15 +92,27 @@ function ProductCard({ img_url, name, price, id, status }: IProps) {
         >
           View <FaEye className="fill-black hover:fill-white" />
         </Button> */}
-        <Button
-          disabled={!status}
-          onClick={() => handleAddToCart()}
-          className={`w-full mt-auto rounded-t-none rounded-bl-none rounded-br-lg ${
-            !status && "cursor-not-allowed"
-          }`}
-        >
-          Add to Cart <MdShoppingCart />
-        </Button>
+        {itemInCart ? (
+          <div className="flex justify-center bg-secondary w-full">
+            <AdjustQuantity
+              adjustFn={adjustQuantityOfAProduct}
+              quantity={itemInCart.quantity}
+              id={itemInCart.id}
+              iconStyle="rounded-none w-10 h-10"
+              boxStyle="justify-between w-full"
+            />
+          </div>
+        ) : (
+          <Button
+            disabled={!status}
+            onClick={() => handleAddToCart()}
+            className={`w-full mt-auto rounded-t-none rounded-bl-none rounded-br-lg ${
+              !status && "cursor-not-allowed"
+            }`}
+          >
+            Add to Cart <MdShoppingCart />
+          </Button>
+        )}
       </div>
     </div>
   );

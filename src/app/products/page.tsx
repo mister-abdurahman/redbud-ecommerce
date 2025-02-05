@@ -10,6 +10,10 @@ import {
 import ProductListing from "@/ui/Home/ProductListing";
 import React, { Suspense } from "react";
 
+export const metadata = {
+  title: "Products",
+};
+
 async function page({ searchParams }) {
   let products: IProduct[];
   let categoryName: string;

@@ -12,12 +12,12 @@ function AuthUISwitch() {
 
   if (user?.user?.aud === "authenticated")
     return (
-      <Button>
-        <Link href={`/profile/${user?.user?.id}`}>
-          <p className="hidden sm:block">View Profile</p>
-          <CgProfile className="block sm:hidden" />
-        </Link>
-      </Button>
+      <Link href={`/profile/${user?.user?.id}`}>
+        <p className="hidden sm:block px-3 py-1 text-sm bg-primary rounded-full text-white">
+          View Profile
+        </p>
+        <CgProfile className="block sm:hidden w-10 h-10 p-1 rounded-full bg-primary text-white" />
+      </Link>
     );
   return <AuthDialog />;
 }

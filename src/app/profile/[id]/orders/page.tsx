@@ -7,6 +7,10 @@ import { getProductById } from "@/services/apiProducts";
 import OrderHistoryCard from "@/ui/Order/OrderHistoryCard";
 import React, { Suspense } from "react";
 
+export const metadata = {
+  title: "Orders",
+};
+
 async function page({ params }) {
   const user_id = await params.id;
   const orders = await getOrdersByUserId(user_id);

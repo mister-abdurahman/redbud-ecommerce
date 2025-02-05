@@ -7,6 +7,10 @@ import CartList from "@/ui/Cart/CartList";
 import ProductCalculation from "@/ui/Cart/ProductCalculation";
 import PageContainer from "@/components/PageContainer";
 
+export const metadata = {
+  title: "Cart",
+};
+
 async function page() {
   return (
     <PageContainer pageTitle="CART">

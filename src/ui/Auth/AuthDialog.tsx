@@ -16,6 +16,7 @@ import SignUpForm from "./SignupForm";
 import LoginForm from "./LogInForm";
 import { AuthContext } from "@/store/authStore";
 import { BiLogInCircle } from "react-icons/bi";
+import { CiLogin } from "react-icons/ci";
 
 export function AuthDialog() {
   const [isNewUser, setIsNewUser] = useState(false);
@@ -23,10 +24,8 @@ export function AuthDialog() {
   return (
     <Dialog open={isAuthModalOpen} onOpenChange={setIsAuthModalOpen}>
       <DialogTrigger asChild>
-        <Button>
-          <p className="hidden sm:block">Login</p>
-          <BiLogInCircle className="block sm:hidden" />
-        </Button>
+        <Button className="hidden sm:block">Login</Button>
+        <CiLogin className="sm:hidden block fill-primary" />
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
