@@ -12,7 +12,7 @@ function PageContainer({
     <div className="p-4 sm:p-8">
       <BackButton />
       {pageTitle && (
-        <h1 className="bg-secondary rounded-full text-center text-white mt-3 py-2 uppercase">
+        <h1 className="bg-primary rounded-full text-center text-white mt-3 py-2 uppercase">
           {pageTitle}
         </h1>
       )}

@@ -52,7 +52,6 @@ function LoginForm({ closeDialog, setToSIgnUp }) {
     const res = await logIn(adjusted.email, adjusted.password);
 
     if (res.name == "AuthApiError") {
-      console.log(res.name, res.message);
       return alert(res.message);
     } else {
       setUser(res)

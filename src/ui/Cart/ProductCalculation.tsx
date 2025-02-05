@@ -82,7 +82,7 @@ function ProductCalculation() {
         </div> */}
       </div>
       <div className="flex flex-col basis-1/2 gap-2">
-        <div className="bg-blue-50 p-6 border-2 border-secondary rounded-xl">
+        <div className="bg-secondary p-6 border-2 border-primary rounded-xl">
           <div className="flex justify-between">
             <h4>Subtotal</h4>
             <p>
@@ -90,12 +90,16 @@ function ProductCalculation() {
               {total}
             </p>
           </div>
-          <div className="border-t-2 border-b-2 border-secondary my-6 py-3">
+          <div className="border-t-2 border-b-2 border-primary my-6 py-3">
             <p className="mb-3">Shipping</p>
             <RawRadioGroupDemo
               selectedValue={selectedDelivery}
               setSelectedValue={setSelectedDelivery}
-              locations={selectLocationsBasedOnState}
+              locations={
+                country == "Nigeria"
+                  ? selectLocationsBasedOnState
+                  : availableLocationsList.at(0)
+              }
             />
           </div>
 
@@ -103,10 +107,7 @@ function ProductCalculation() {
             <h1>Total</h1>
             <p>
               {CURRENCY}
-              {
-                total + adjustedSelectedLocationPrice
-                // (selectedLocationPrice == "FREE" ? selectedLocationPrice : 0)
-              }
+              {total + adjustedSelectedLocationPrice}
             </p>
           </div>
         </div>

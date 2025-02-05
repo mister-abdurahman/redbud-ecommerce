@@ -16,9 +16,6 @@ function OrderDetails({ children }: { children: ReactNode }) {
   // const dataAddress = searchParams.get("address");
   // const dataAddress = searchParams.get("price");
 
-  // console.log("data", dataAddress);
-  // console.log("data", dataPrice);
-
   const total = cart.reduce(
     (acc, curValue) => acc + curValue.price * curValue.quantity,
     0
@@ -28,12 +25,12 @@ function OrderDetails({ children }: { children: ReactNode }) {
     <div className="basis-full sm:basis-2/5">
       <h1 className="mb-3 text-xl font-semibold">Your order</h1>
 
-      <div className="bg-blue-50 p-6 border-2 border-secondary rounded-md">
+      <div className="bg-secondary p-6 border-2 border-primary rounded-2xl">
         <div className="flex justify-between font-bold">
           <h4>PRODUCT</h4>
           <p>SUBTOTAL</p>
         </div>
-        <div className="border-t-2 border-b-2 border-secondary my-6 py-3 space-y-2">
+        <div className="border-t-2 border-b-2 border-primary my-6 py-3 space-y-2">
           {cart.map((el, i) => (
             <div key={i} className="flex justify-between">
               <p className="mb-3 text-sm">
@@ -45,13 +42,6 @@ function OrderDetails({ children }: { children: ReactNode }) {
               </p>
             </div>
           ))}
-
-          {/* <div className="flex justify-between">
-            <p className="mb-3 text-sm">
-              SOFTHEALTH Evening Primrose 1000mg *30 capsules × 1
-            </p>
-            <p>#7,500</p>
-          </div> */}
           <div className="flex justify-between">
             <p className="mb-3 text-sm font-semibold">Subtotal</p>
             <p className="font-semibold text-red-500">

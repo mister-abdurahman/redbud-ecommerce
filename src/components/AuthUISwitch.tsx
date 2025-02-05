@@ -8,13 +8,7 @@ import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
 
 function AuthUISwitch() {
-  // function AuthUISwitch({
-  //   isAuthenticated,
-  // }: {
-  //   isAuthenticated: false | Session;
-  // }) {
   const { user } = useContext(AuthContext);
-  console.log("user session is:::::::", user);
 
   if (user?.user?.aud === "authenticated")
     return (

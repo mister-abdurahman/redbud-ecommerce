@@ -18,15 +18,10 @@ export function RadioGroupDemo({
   const [s, setS] = useState("Our Pickup store");
 
   const handleChange = (event: any) => {
-    // console.log(value);
     setS(event.target.value);
   };
   return (
-    <RadioGroup
-    // defaultValue="Our Pickup store"
-    // value={s}
-    // onChange={handleChange}
-    >
+    <RadioGroup>
       <div className="flex justify-between">
         <div className="flex items-center space-x-2">
           <RadioGroupItem
@@ -59,43 +54,4 @@ export function RadioGroupDemo({
       </div>
     </RadioGroup>
   );
-}
-
-// <div>
-//   <div>
-//     <input
-//       type="radio"
-//       id="huey"
-//       name="drone"
-//       value="huey"
-//       onChange={(e) => handleChange(e.currentTarget.value)}
-//     />
-//     <label htmlFor="huey">Huey</label>
-//   </div>
-
-//   <div>
-//     <input
-//       type="radio"
-//       id="dewey"
-//       name="drone"
-//       value="dewey"
-//       onChange={(e) => handleChange(e.currentTarget.value)}
-//     />
-//     <label htmlFor="dewey">Dewey</label>
-//   </div>
-// </div>
-
-{
-  /* {availableLocations.map((el, i) => (
-  <div key={i} className="flex justify-between">
-    <div className="flex items-center space-x-2">
-      <RadioGroupItem value={el.address} id={`r${i + 1}`} />
-      <Label htmlFor={`r${i + 1}`}>{el.address}</Label>
-    </div>
-    <p className="font-semibold">
-      {CURRENCY}
-      {el.price}
-    </p>
-  </div>
-))} */
 }

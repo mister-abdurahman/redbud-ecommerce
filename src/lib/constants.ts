@@ -3,8 +3,18 @@ import tate from "@/assets/images/redbud_logo.png";
 
 export const CURRENCY = "₦";
 export const LOGO = tate;
+export const BRAND_NAME = "redbud";
 
 export const availableLocationsList: IAvailableLocation[] = [
+  {
+    state: "Abroad",
+    locations: [
+      {
+        address: "Contact Support For Delivery Abroad",
+        price: 0,
+      },
+    ],
+  },
   {
     state: "Abia",
     locations: [

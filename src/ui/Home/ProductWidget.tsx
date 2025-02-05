@@ -9,7 +9,7 @@ function ProductWidget() {
     <div className="flex flex-col sm:flex-row gap-2">
       <div className="bg-blue-100 flex justify-between items-center basis-1/2 p-8 rounded-md">
         <div className="flex flex-col gap-4">
-          <p className="uppercase bg-secondary rounded-xl text-white w-fit p-2 text-xs">
+          <p className="uppercase bg-primary rounded-xl text-white w-fit p-2 text-xs">
             25% off
           </p>
           <h4 className="uppercase text-xl font-semibold">
@@ -29,7 +29,7 @@ function ProductWidget() {
       <div className="flex flex-col basis-full sm:basis-1/2 gap-2">
         <div className="bg-green-100 basis-full sm:basis-1/2 flex justify-between items-center p-5">
           <div className="flex flex-col gap-4">
-            <p className="uppercase bg-secondary rounded-xl text-white w-fit p-2 text-xs">
+            <p className="uppercase bg-primary rounded-xl text-white w-fit p-2 text-xs">
               25% off
             </p>
             <h4 className="uppercase text-xl font-semibold">
@@ -48,7 +48,7 @@ function ProductWidget() {
         </div>
         <div className="bg-yellow-100 basis-full sm:basis-1/2 flex justify-between items-center p-5">
           <div className="flex flex-col gap-4">
-            <p className="uppercase bg-secondary rounded-xl text-white w-fit p-2 text-xs">
+            <p className="uppercase bg-primary rounded-xl text-white w-fit p-2 text-xs">
               25% off
             </p>
             <h4 className="uppercase text-xl font-semibold">

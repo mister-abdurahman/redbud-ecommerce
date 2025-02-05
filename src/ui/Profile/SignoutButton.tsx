@@ -27,7 +27,7 @@ function SignoutButton() {
       <Button
         variant="outline"
         onClick={handleLogout}
-        className={`py-3 sm:px-5 px-3 hover:bg-primary-800 hover:text-primary-100 transition-colors flex items-center sm:gap-4 gap-2 sm:flex-row flex-col font-semibold text-primary-200`}
+        className={`py-3 sm:px-5 px-3 hover:bg-primary-800 hover:text-primary-100 transition-colors flex items-center sm:gap-4 gap-2 flex-row font-semibold text-primary-200`}
       >
         <CiLogin /> Log out
       </Button>

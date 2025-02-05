@@ -1,5 +1,6 @@
 "use client";
 import { toast } from "@/hooks/use-toast";
+import { BRAND_NAME } from "@/lib/constants";
 import { createOrder } from "@/services/apiOrders";
 import { AuthContext } from "@/store/authStore";
 import { MyContext } from "@/store/store";
@@ -37,7 +38,6 @@ function VerifyPaymentUI() {
         })
           .then((res) => res.json())
           .then(async (data) => {
-            console.log("verification result:", data, "total:", totalToPay);
             if (data.status && data.data.amount == totalToPay * 100) {
               user &&
                 (await createOrder(
@@ -49,9 +49,15 @@ function VerifyPaymentUI() {
                   },
                   cart
                 ));
-              localStorage.setItem("cart", JSON.stringify([]));
-              localStorage.setItem("totalToPay", JSON.stringify(0));
-              localStorage.setItem("shippingAddress", JSON.stringify(null));
+              localStorage.setItem(`${BRAND_NAME}_cart`, JSON.stringify([]));
+              localStorage.setItem(
+                `${BRAND_NAME}_totalToPay`,
+                JSON.stringify(0)
+              );
+              localStorage.setItem(
+                `${BRAND_NAME}_shippingAddress`,
+                JSON.stringify(null)
+              );
               setCart([]);
               setShippingAddress(null);
               setTotalToPay(0);

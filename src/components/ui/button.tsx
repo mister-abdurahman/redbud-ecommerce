@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-secondary dark:bg-blue-100 dark:text-secondary text-primary-foreground shadow hover:bg-secondary/90 rounded-full",
+          "bg-primary dark:bg-blue-100 dark:text-secondary text-primary-foreground shadow hover:bg-primary/90 rounded-full",
         electric_blue:
           "bg-secondary-electric_blue text-primary-foreground shadow hover:bg-secondary/90 rounded-full",
         light_blue:
@@ -20,7 +20,7 @@ const buttonVariants = cva(
         outline:
           "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+          "bg-secondary text-primary shadow-sm hover:bg-secondary/80 rounded-full",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },

@@ -7,7 +7,7 @@ import Link from "next/link";
 
 function Hero() {
   return (
-    <div className="relative bg-heroImage sm:bg-none sm:bg-secondary w-full h-80">
+    <div className="relative bg-heroImage sm:bg-none sm:bg-primary w-full h-80">
       <div className="flex flex-col items-start absolute z-10 top-1/2 -translate-y-1/2 left-4">
         <h1 className="text-4xl font-semibold text-white sm:mb-1 mb-3">
           Your One-Stop <br className="block sm:hidden" /> Gadget Haven
@@ -18,7 +18,7 @@ function Hero() {
           of tech today!.
         </p>
         <Link href="/products">
-          <Button variant="electric_blue" className="flex items-center">
+          <Button variant="secondary" className="flex items-center">
             <FaBagShopping /> Start Shopping{" "}
           </Button>
         </Link>

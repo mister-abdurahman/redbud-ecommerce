@@ -16,16 +16,13 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#FF3B3B",
-          light: "#FF7676",
+          DEFAULT: "#333D79",
           dark: "#1E293B",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "#333D79",
-          electric_blue: "#2563EB",
-          bright_cyan: "#38BDF8",
-          orange_accent: "#F97316",
+          DEFAULT: "#f1f5f9",
+          dark: "#cbd5e1",
           foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {

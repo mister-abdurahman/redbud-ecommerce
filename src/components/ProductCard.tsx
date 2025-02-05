@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { MyContext } from "@/store/store";
 import { toast } from "@/hooks/use-toast";
 import { ToastAction } from "./ui/toast";
+import Link from "next/link";
 
 interface IProps {
   img_url: string;
@@ -45,7 +46,6 @@ function ProductCard({ img_url, name, price, id, status }: IProps) {
       img_url,
       id,
     });
-    // alert("Item added to cart");
     toast({
       title: "Item added to cart",
       description: "Want to go checkout ?",
@@ -66,32 +66,34 @@ function ProductCard({ img_url, name, price, id, status }: IProps) {
           Out of Stock
         </span>
       )}
-      <Image
-        alt="product image"
-        src={img_url}
-        objectFit="cover"
-        objectPosition="center"
-        width={200}
-        height={200}
-        className="w-full h-[14rem] aspect-square"
-      />
+      <Link href={`products/${id}`}>
+        <Image
+          alt="product image"
+          src={img_url}
+          objectFit="cover"
+          objectPosition="center"
+          width={200}
+          height={200}
+          className="w-full h-[14rem] aspect-square"
+        />
+      </Link>
       <div className="space-y-2 pt-2 pb-1 pl-2 border-t border-gray-400 ">
         <p className="text-[15px] font-bold">{name}</p>
         <p className="text-[13px]">₦{price}</p>
       </div>
 
       <div className="group-hover:flex sm:hidden flex">
-        <Button
+        {/* <Button
           onClick={() => navigate.push(`/products/${id}`)}
           className="w-full mt-auto rounded-t-none text-black rounded-br-none rounded-bl-lg bg-blue-100 hover:bg-blue-300"
         >
           View <FaEye className="fill-black hover:fill-white" />
-        </Button>
+        </Button> */}
         <Button
           disabled={!status}
           onClick={() => handleAddToCart()}
           className={`w-full mt-auto rounded-t-none rounded-bl-none rounded-br-lg ${
-            !status && "hover:cursor-not-allowed"
+            !status && "cursor-not-allowed"
           }`}
         >
           Add to Cart <MdShoppingCart />

@@ -7,7 +7,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 function Footer() {
   return (
-    <div className="mt-auto px-8 sm:px-12 pt-6 sm:pt-12 pb-7 text-sm bg-secondary text-white flex flex-col gap-8">
+    <div className="mt-auto px-8 sm:px-12 pt-6 sm:pt-12 pb-7 text-sm bg-primary text-white flex flex-col gap-8">
       <div className="flex flex-col sm:flex-row gap-4 sm:gap-0 sm:justify-between">
         <div>
           <h1 className="font-semibold mb-2 sm:mb-3">Contact</h1>

@@ -129,8 +129,6 @@ export async function signInWithGoogle() {
 // export async function isUserAuthenticated() {
 //   const { data: session } = await supabase.auth.getSession();
 
-//   console.log("inside auth fn", session);
-
 //   if (!session.session) {
 //     return false;
 //   } else {

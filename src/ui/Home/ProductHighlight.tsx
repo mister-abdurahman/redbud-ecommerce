@@ -29,11 +29,11 @@ async function ProductHighlight({
     <div className={`pb-8 sm:pb-14 ${outerStyle}`}>
       <div className="flex justify-between mb-4">
         <h4 className="text-base font-bold">{heading}</h4>
-        <p className="text-secondary text-sm">
+        <p className="text-primary text-sm">
           <Link href={"/products"}>View All &rarr;</Link>
         </p>
       </div>
-      <div className="flex flex-col sm:flex-row gap-12 sm:gap-6 flex-wrap items-center">
+      <div className="flex flex-col sm:flex-row gap-12 sm:gap-8 flex-wrap items-center">
         {products.map((el, i) => (
           <ProductCard
             key={i}

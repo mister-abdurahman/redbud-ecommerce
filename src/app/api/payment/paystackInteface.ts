@@ -9,7 +9,6 @@ export const handlePayment = (email, amount) => {
       alert("Transaction cancelled");
     },
     callback: function (response) {
-      console.log("response from callback", response);
       if (response.status === "success") {
         window.location.href = `/products?reference=${response.reference}`;
       } else return alert("An error occured during transaction");
@@ -17,7 +16,3 @@ export const handlePayment = (email, amount) => {
   });
   handler.openIframe();
 };
-
-// export const handlePayment = (email, amount) => {
-//   const;
-// };

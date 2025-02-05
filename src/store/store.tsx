@@ -10,6 +10,7 @@ import {
 } from "@/services/apiCart";
 import { getProductById } from "@/services/apiProducts";
 import { ICart } from "@/lib/types";
+import { BRAND_NAME } from "@/lib/constants";
 
 interface IAddress {
   address: string;
@@ -48,7 +49,7 @@ export const MyContextProvider = function ({ children }) {
   const { user } = useContext(AuthContext);
   const [cart, setCart] = useState(() => {
     if (typeof window !== "undefined") {
-      const savedCart = localStorage.getItem("cart");
+      const savedCart = localStorage.getItem(`${BRAND_NAME}_cart`);
       return savedCart ? JSON.parse(savedCart) : [];
     }
     return [];
@@ -56,7 +57,7 @@ export const MyContextProvider = function ({ children }) {
 
   const [totalToPay, setTotalToPay] = useState(() => {
     if (typeof window !== "undefined") {
-      const savedTotalToPay = localStorage.getItem("totalToPay");
+      const savedTotalToPay = localStorage.getItem(`${BRAND_NAME}_totalToPay`);
       return savedTotalToPay ? Number(JSON.parse(savedTotalToPay)) : 0;
     }
     return 0;
@@ -67,7 +68,9 @@ export const MyContextProvider = function ({ children }) {
     price: number;
   }>(() => {
     if (typeof window !== "undefined") {
-      const savedShippingAddress = localStorage.getItem("shippingAddress");
+      const savedShippingAddress = localStorage.getItem(
+        `${BRAND_NAME}_shippingAddress`
+      );
       return savedShippingAddress ? JSON.parse(savedShippingAddress) : null;
     }
     return null;
@@ -75,13 +78,19 @@ export const MyContextProvider = function ({ children }) {
 
   useEffect(() => {
     if (cart.length > 0) {
-      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem(`${BRAND_NAME}_cart`, JSON.stringify(cart));
     }
     if (shippingAddress) {
-      localStorage.setItem("shippingAddress", JSON.stringify(shippingAddress));
+      localStorage.setItem(
+        `${BRAND_NAME}_shippingAddress`,
+        JSON.stringify(shippingAddress)
+      );
     }
     if (totalToPay) {
-      localStorage.setItem("totalToPay", JSON.stringify(totalToPay));
+      localStorage.setItem(
+        `${BRAND_NAME}_totalToPay`,
+        JSON.stringify(totalToPay)
+      );
     }
   }, [cart, shippingAddress, totalToPay]);
 
@@ -89,7 +98,7 @@ export const MyContextProvider = function ({ children }) {
     function () {
       async function FetchCart() {
         const userCart = await getCartByUserId(user?.user?.id);
-        // localStorage.setItem("cart", JSON.stringify(userCart));
+        // localStorage.setItem(`{BRAND_NAME}_cart", JSON.stringify(userCart));
         const modifiedCart = await Promise.all(
           userCart.map(async (el) => {
             const product = await getProductById(el.product_id);
@@ -103,9 +112,11 @@ export const MyContextProvider = function ({ children }) {
             };
           })
         );
-        console.log("what da heck?!", modifiedCart);
         setCart(modifiedCart);
-        localStorage.setItem("cart", JSON.stringify(modifiedCart));
+        localStorage.setItem(
+          `${BRAND_NAME}_cart`,
+          JSON.stringify(modifiedCart)
+        );
       }
 
       if (!user) return;

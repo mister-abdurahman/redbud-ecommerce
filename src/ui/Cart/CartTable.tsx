@@ -42,8 +42,9 @@ function CartTable() {
       </p>
     );
 
-  return <Table className="hidden sm:block table-auto mx-auto w-fit">
-      <TableHeader className="bg-blue-50">
+  return (
+    <Table className="hidden sm:block table-auto mx-auto w-fit">
+      <TableHeader className="bg-secondary">
         <TableRow className="">
           <TableHead className=""></TableHead>
           <TableHead className="">Product</TableHead>
@@ -78,7 +79,7 @@ function CartTable() {
             </TableCell>
             <TableCell className="text-right">
               <MdCancel
-                className="w-10 h-10 cursor-pointer fill-secondary"
+                className="w-10 h-10 cursor-pointer fill-black"
                 onClick={() => handleRemoveFromCart(product.id)}
               />
             </TableCell>
@@ -86,7 +87,7 @@ function CartTable() {
         ))}
       </TableBody>
       <TableFooter>
-        <TableRow className="bg-secondary text-white font-bold min-w-full">
+        <TableRow className="bg-primary text-white font-bold min-w-full">
           <TableCell colSpan={5}>Total</TableCell>
           <TableCell className="text-right">
             {CURRENCY}
@@ -95,6 +96,7 @@ function CartTable() {
         </TableRow>
       </TableFooter>
     </Table>
+  );
 }
 
 export default CartTable;

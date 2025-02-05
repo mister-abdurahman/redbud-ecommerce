@@ -68,7 +68,6 @@ export function BillingForm({ user_profile }: { user_profile?: IProfile }) {
   } = form;
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
     handlePayment(data.email, totalToPay);
   }
 
@@ -182,7 +181,6 @@ export function BillingForm({ user_profile }: { user_profile?: IProfile }) {
                     <Input
                       type="number"
                       placeholder="Phone Number"
-                      // onChange={(e) => field.onChange(e.target.valueAsNumber)}
                       {...field}
                     />
                   </FormControl>

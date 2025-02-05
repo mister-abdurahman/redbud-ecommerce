@@ -1,23 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
 
-// export async function GET(req, res) {
-//   return NextResponse.json({ test: "12345" });
-// }
-
-// Call Paystack API to initialize transaction
-// const response = await fetch(
-//   "https://api.paystack.co/transaction/initialize",
-//   {
-//     method: "POST",
-//     body: JSON.stringify({ email, amount }),
-//     headers: {
-//       Authorization:
-//         "Bearer sk_test_c41073d45e0a3af2a48f871aacd572fd94f6db8b",
-//       "Content-Type": "application/json",
-//     },
-//   }
-// );
 // initiate payment
 export async function POST(req: NextRequest): Promise<NextResponse> {
   try {

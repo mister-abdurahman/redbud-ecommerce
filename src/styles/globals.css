@@ -74,48 +74,24 @@
 .loader {
   width: 48px;
   height: 48px;
-  border: 5px solid #cb6ce6;
   border-radius: 50%;
   display: inline-block;
-  box-sizing: border-box;
   position: relative;
-  animation: pulse 1s linear infinite;
-}
-.loader:after {
-  content: "";
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  border: 5px solid #71047b;
-  border-radius: 50%;
-  display: inline-block;
+  border: 10px solid;
+  border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25)
+    rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
   box-sizing: border-box;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  animation: scaleUp 1s linear infinite;
+  animation: rotation 1s linear infinite;
 }
 
-@keyframes scaleUp {
+@keyframes rotation {
   0% {
-    transform: translate(-50%, -50%) scale(0);
+    transform: rotate(0deg);
   }
-  60%,
   100% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: rotate(360deg);
   }
 }
-@keyframes pulse {
-  0%,
-  60%,
-  100% {
-    transform: scale(1);
-  }
-  80% {
-    transform: scale(1.2);
-  }
-}
-
 /* radio style */
 
 .radio-wrapper {

@@ -14,7 +14,6 @@ export async function createOrder(orderDetails: IOrder, cart: ICart[]) {
       // throw new Error(`Product with id ${id} not Found`);
       throw new Error(error);
     }
-    console.log("order data", order.id);
 
     const modifiedCart = cart.map((el) => {
       return {

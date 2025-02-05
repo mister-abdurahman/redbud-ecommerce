@@ -63,7 +63,6 @@ export async function getProductsBySearch(
       search_term: searchText,
     });
     if (error) throw new Error(error.message);
-    else console.log(data);
 
     return data as IProduct[];
   } catch (error) {

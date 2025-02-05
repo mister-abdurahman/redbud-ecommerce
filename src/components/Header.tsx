@@ -43,12 +43,12 @@ async function Header() {
         <SearchBox />
         <div className="flex gap-5 items-center">
           <CartIcon />
-          <MdAddIcCall className="w-6 h-6 fill-secondary" />
+          <MdAddIcCall className="w-6 h-6 fill-primary sm:block hidden" />
 
           <AuthUISwitch />
           {/* <AuthUISwitch isAuthenticated={isAuthenticated} /> */}
           {/* <Button className="hidden sm:block">Login/Register</Button> */}
-          <DarkModeToggler />
+          {/* <DarkModeToggler /> */}
         </div>
       </div>
       <div className="flex items-center sm:hidden justify-between gap-6">

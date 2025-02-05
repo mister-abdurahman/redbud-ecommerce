@@ -2,6 +2,7 @@
 import { createContext, useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { AuthChangeEvent, Session, User } from "@supabase/supabase-js";
+import { BRAND_NAME } from "@/lib/constants";
 
 export const AuthContext = createContext(null);
 
@@ -9,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   // const [user, setUser] = useState<null | Session>(null);
   const [user, setUser] = useState<null | Session>(() => {
     if (typeof window !== "undefined") {
-      const savedAuth = localStorage.getItem("user_session");
+      const savedAuth = localStorage.getItem(`${BRAND_NAME}_user_session`);
       return savedAuth ? JSON.parse(savedAuth) : null;
     }
     return null;
@@ -20,7 +21,7 @@ export const AuthProvider = ({ children }) => {
   //   const { data: subscription } = supabase.auth.onAuthStateChange(
   //     (_event, session) => {
   //       setUser(session?.user || null);
-  //       localStorage.setItem("user_session", JSON.stringify(user ?? null));
+  //       localStorage.setItem("redbud_user_session", JSON.stringify(user ?? null));
   //     }
   //   );
   //   return () => subscription.subscription.unsubscribe();
@@ -28,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchSession = async () => {
-      localStorage.setItem("user_session", JSON.stringify(user));
+      localStorage.setItem(`${BRAND_NAME}_user_session`, JSON.stringify(user));
     };
 
     fetchSession();

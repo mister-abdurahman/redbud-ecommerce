@@ -8,7 +8,8 @@ function BackButton() {
   return (
     <Button
       onClick={() => router.back()}
-      className="bg-blue-100 hover:bg-blue-200 text-black font-semibold hover:text-gray-800"
+      variant="secondary"
+      className="font-semibold"
     >
       &larr; Back
     </Button>
