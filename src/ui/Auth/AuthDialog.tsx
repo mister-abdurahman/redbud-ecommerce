@@ -24,8 +24,10 @@ export function AuthDialog() {
   return (
     <Dialog open={isAuthModalOpen} onOpenChange={setIsAuthModalOpen}>
       <DialogTrigger asChild>
-        <Button className="hidden sm:block">Login</Button>
-        <CiLogin className="sm:hidden block fill-primary" />
+        <span>
+          <Button className="hidden sm:block">Login</Button>
+          <CiLogin className="sm:hidden block fill-primary" />
+        </span>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

@@ -32,9 +32,7 @@ export default async function Page() {
             heading="New Products"
           />
         </Suspense>
-        {/* <Categorys /> */}
         <ProductWidget />
-        {/* <ProductHighlight outerStyle="mt-6" heading="Upcoming Products" /> */}
         <Stats />
       </div>
       <MakePrescription />

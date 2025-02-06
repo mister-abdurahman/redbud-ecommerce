@@ -5,12 +5,22 @@ import { CURRENCY } from "@/lib/constants";
 import { ICart } from "@/lib/types";
 import { MyContext } from "@/store/store";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useContext } from "react";
 import { MdCancel } from "react-icons/md";
 
 function CartList() {
-  const { cart, adjustQuantityOfAProduct, removeItemFromCart } =
-    useContext(MyContext);
+  const { cart } = useContext(MyContext);
+
+  if (cart.length < 1)
+    return (
+      <p className="text-center font-semibold">
+        No Items in cart,{" "}
+        <Link className="underline text-secondary" href="/products">
+          Click Here to Start Shopping
+        </Link>
+      </p>
+    );
   return (
     <div className="sm:hidden flex flex-col gap-3">
       {cart.map((el, i) => (
@@ -44,11 +54,6 @@ export function CartItem({ item }: { item: ICart }) {
           </span>
         </div>
         <div className="flex gap-2 items-center">
-          {/* <span className="flex gap-8 items-center border border-gray-500 px-4 py-1">
-            <p>-</p>
-            <p>{item.quantity}</p>
-            <p>+</p>
-          </span> */}
           <AdjustQuantity
             quantity={item.quantity}
             id={item.id}
