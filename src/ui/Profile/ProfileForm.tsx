@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/form";
 import { AuthContext } from "@/store/authStore";
 import { IProfile } from "@/lib/types";
+import { toast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   first_name: z
@@ -92,9 +93,17 @@ function ProfileForm({ defaultProfile }: { defaultProfile: IProfile }) {
     const res = await updateUserProfile(adjusted);
 
     if (res.success) {
-      alert(res.message);
+      // alert(res.message);
+      toast({
+        title: "Updated Successfully",
+        description: res.message,
+      });
     } else {
-      alert(res.error);
+      toast({
+        title: "An error occured",
+        description: res.error,
+      });
+      // alert(res.error);
     }
     setLoading(false);
   }

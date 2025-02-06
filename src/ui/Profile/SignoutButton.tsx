@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/hooks/use-toast";
 import { signOut } from "@/services/apiAuth";
 import { AuthContext } from "@/store/authStore";
 import { useRouter } from "next/navigation";
@@ -13,7 +14,11 @@ function SignoutButton() {
 
   async function handleLogout() {
     await signOut();
-    alert(`${user.user.email} signed out successfully`);
+    // alert(`${user.user.email} signed out successfully`);
+    toast({
+      title: "Success",
+      description: `${user.user.email} signed out successfully`,
+    });
     router.push("/");
     setUser(null);
 

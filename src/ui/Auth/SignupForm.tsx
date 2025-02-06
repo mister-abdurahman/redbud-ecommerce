@@ -15,6 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { toast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   firstName: z
@@ -90,13 +91,25 @@ function SignUpForm({ closeDialog, setToSIgnin }) {
     const res = await signUp(adjusted);
 
     if (res.success) {
-      alert(res.message);
-      alert(
-        "Kindly check your mail inbox and verify your email before you log in"
-      );
+      toast({
+        title: "Sign up Successfull",
+        description: res.message,
+      });
+      toast({
+        title: "Verify your email",
+        description: `Kindly check your mail inbox and verify your email before you log in`,
+      });
+      // alert(res.message);
+      // alert(
+      //   "Kindly check your mail inbox and verify your email before you log in"
+      // );
       setToSIgnin();
     } else {
-      alert(res.error);
+      toast({
+        title: "An error occured",
+        description: res.error,
+      });
+      // alert(res.error);
     }
   }
 

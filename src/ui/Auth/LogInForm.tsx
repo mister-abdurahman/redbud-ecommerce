@@ -16,6 +16,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { AuthContext } from "@/store/authStore";
+import { ToastAction } from "@/components/ui/toast";
+import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 const errorMessages = ["Email not confirmed", "Invalid login credentials"];
 
@@ -43,6 +46,8 @@ function LoginForm({ closeDialog, setToSIgnUp }) {
     register,
   } = form;
 
+  const navigate = useRouter();
+
   async function onSubmitLoginForm(data: z.infer<typeof formSchema>) {
     const adjusted = {
       email: data.email,
@@ -52,10 +57,18 @@ function LoginForm({ closeDialog, setToSIgnUp }) {
     const res = await logIn(adjusted.email, adjusted.password);
 
     if (res.name == "AuthApiError") {
-      return alert(res.message);
+      // return alert(res.message);
+      return toast({
+        title: "An error occured",
+        description: res.message,
+      });
     } else {
-      setUser(res)
-      alert(`${res.user.email} is successfully signed in`);
+      setUser(res);
+      // alert(`${res.user.email} is successfully signed in`);
+      toast({
+        title: "Success",
+        description: `${res.user.email} is successfully signed in`,
+      });
       closeDialog();
     }
   }
