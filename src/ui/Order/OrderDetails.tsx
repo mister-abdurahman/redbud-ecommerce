@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { ReactNode, useContext } from "react";
 import { MyContext } from "@/store/store";
 import { CURRENCY } from "@/lib/constants";
+import Link from "next/link";
 
 function OrderDetails({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -20,6 +21,16 @@ function OrderDetails({ children }: { children: ReactNode }) {
     (acc, curValue) => acc + curValue.price * curValue.quantity,
     0
   );
+
+  if (!shippingAddress || cart.length < 1)
+    return (
+      <h1>
+        Check out Products to Purchase{" "}
+        <Link href={"/products"} className="underline font-bold">
+          HERE
+        </Link>
+      </h1>
+    );
 
   return (
     <div className="basis-full sm:basis-2/5">

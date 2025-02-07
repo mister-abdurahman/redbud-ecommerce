@@ -38,6 +38,7 @@ function VerifyPaymentUI() {
         })
           .then((res) => res.json())
           .then(async (data) => {
+            console.log("payment status", data);
             if (data.status && data.data.amount == totalToPay * 100) {
               user &&
                 (await createOrder(
