@@ -14,9 +14,9 @@ function CartList() {
 
   if (cart.length < 1)
     return (
-      <p className="text-center font-semibold">
+      <p className="sm:hidden block text-center font-semibold">
         No Items in cart,{" "}
-        <Link className="underline text-secondary" href="/products">
+        <Link className="underline text-primary" href="/products">
           Click Here to Start Shopping
         </Link>
       </p>
